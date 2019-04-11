@@ -5,7 +5,7 @@
 </head>
 
 <body>
-My first JSP!
+My first JSP! Welcome ${name}!
 </body>
 
 </html>
