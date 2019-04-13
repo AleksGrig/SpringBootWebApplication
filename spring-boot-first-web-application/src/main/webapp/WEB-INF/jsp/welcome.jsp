@@ -5,7 +5,7 @@
 </head>
 
 <body>
-Welcome ${name}!!!
+Welcome ${name}!!! You password is ${password}
 </body>
 
 </html>
