@@ -1,9 +1,10 @@
-package com.in28minutes.springboot;
+package com.in28minutes.springboot.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+//@ComponentScan("com.in28minutes.springboot.web")
 public class SpringBootFirstWebApplication {
 
 	public static void main(String[] args) {
