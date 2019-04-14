@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.in28minutes.springboot.web.service.LoginServiceInterface;
 
-// /login => "Hello world"
 @Controller
 public class LoginController {
 
