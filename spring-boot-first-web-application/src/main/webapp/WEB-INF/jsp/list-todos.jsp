@@ -5,7 +5,7 @@
 </head>
 
 <body>
-Here are the list of your todos: 
+Here are the list of your todos, ${name}: 
 ${todos}
 </body>
 
