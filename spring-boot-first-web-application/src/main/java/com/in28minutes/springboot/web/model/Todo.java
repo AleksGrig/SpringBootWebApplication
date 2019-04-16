@@ -2,9 +2,14 @@ package com.in28minutes.springboot.web.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
 public class Todo {
     private int id;
     private String user;
+
+	// @Size(min = 10, message = "Enter at least 10 characters...")
+	@Pattern(regexp = "[a-z A-Z]{5,}", message = "Enter at least 5 letters...")
     private String desc;
     private Date targetDate;
 	private boolean isDone;
