@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 //@ComponentScan("com.in28minutes.springboot.web")
-public class SpringBootFirstWebApplication {
+public class SpringBootWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFirstWebApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 
 }
