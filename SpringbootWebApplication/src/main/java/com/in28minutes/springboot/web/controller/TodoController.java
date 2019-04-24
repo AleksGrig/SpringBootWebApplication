@@ -19,15 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.in28minutes.springboot.web.model.Todo;
-import com.in28minutes.springboot.web.service.TodoService;
+import com.in28minutes.springboot.web.service.TodoRepository;
 
 @Controller
 //@SessionAttributes("name")
 public class TodoController {
 
-	// Injected automatically
 	@Autowired
-	TodoService service;
+	TodoRepository repository;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -41,7 +40,8 @@ public class TodoController {
 	// @ResponseBody
 	public String showTodosList(ModelMap model) {
 		String name = getLoggedinUserName();
-		model.put("todos", service.retrieveTodos(name));
+		model.put("todos", repository.findByUser(name));
+		// model.put("todos", service.retrieveTodos(name));
 		return "list-todos";
 	}
 
@@ -62,13 +62,15 @@ public class TodoController {
 
 	@RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam int id) {
-		service.deleteTodo(id);
+		repository.deleteById(id);
+		// service.deleteTodo(id);
 		return "redirect:/list-todos";
 	}
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.GET)
 	public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
-		Todo todo = service.retrieveTodo(id);
+		Todo todo = repository.findById(id).get();
+		// Todo todo = service.retrieveTodo(id);
 		model.put("todo", todo);
 		return "todo";
 	}
@@ -79,7 +81,8 @@ public class TodoController {
 			return "todo";
 		}
 		todo.setUser(getLoggedinUserName());
-		service.updateTodo(todo);
+		repository.save(todo);
+		// service.updateTodo(todo);
 		return "redirect:/list-todos";
 	}
 
@@ -89,7 +92,11 @@ public class TodoController {
 			return "todo";
 		}
 
-		service.addTodo(getLoggedinUserName(), todo.getDesc(), todo.getTargetDate(), false);
+		todo.setUser(getLoggedinUserName());
+		repository.save(todo);
+
+		// service.addTodo(getLoggedinUserName(), todo.getDesc(), todo.getTargetDate(),
+		// false);
 		return "redirect:/list-todos";
 	}
 }
